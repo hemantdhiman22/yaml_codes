@@ -1,0 +1,10 @@
+---
+ - name: Selinux mode change
+   hosts: all
+   become: yes
+   tasks:
+     - name: change mode to permissive
+       lineinfile:
+         path: /etc/selinux/config
+         regexp: '^SELINUX='
+         line: SELINUX=permissive

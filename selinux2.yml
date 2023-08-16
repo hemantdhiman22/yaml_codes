@@ -1,0 +1,12 @@
+---
+ - name: Selinux status mode change
+   hosts: all
+   become: yes
+   vars:
+    - status: enforcing
+   tasks:
+     - name: change mode of SElinux
+       lineinfile:
+         path: /etc/selinux/config
+         regexp: '^SELINUX='
+         line: SELINUX={{ status }}
