@@ -1,0 +1,19 @@
+---
+ - name: backup of date
+   hosts: all
+   become: yes
+   collections:
+     - community.general
+   tasks:
+     - name: make a directory called backup.
+       file:
+         path: /home/ansible/backups
+         state: directory
+         owner: ansible
+         group: ansible
+         mode: "0700"
+     - name: backup of /etc/ directory
+       community.general.archive:
+         path: /etc
+         dest: /home/ansible/backups/backup.tar.gz
+         format: gz      
